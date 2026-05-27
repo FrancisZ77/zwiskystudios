@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zwisky Studios — Design & Brand Identity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-secondary: #111111;
+            --text: #ffffff;
+            --text-muted: #888888;
+            --text-dim: #444444;
+            --accent: #e63946;
+            --border: #1a1a1a;
+            --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-dim);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.3s var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--text-dim);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Scroll Indicator */
+        .scroll-line {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .scroll-line span {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-dim);
+            writing-mode: vertical-rl;
+        }
+
+        .scroll-line .line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--text-dim), transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 3rem;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 400px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Projects Grid */
+        .projects {
+            background: var(--bg-secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            position: relative;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s var(--transition);
+            group: true;
+        }
+
+        .project-card:hover {
+            border-color: var(--text-dim);
+            transform: translateY(-4px);
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.1);
+            transition: all 0.5s var(--transition);
+        }
+
+        .project-card:hover .project-image {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.03);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--accent);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 2px;
+            margin-bottom: 0.75rem;
+            width: fit-content;
+        }
+
+        .project-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-type {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .project-info {
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-info-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .project-info-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .project-arrow {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.3s var(--transition);
+        }
+
+        .project-card:hover .project-arrow {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: rotate(-45deg);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .service-item {
+            background: var(--bg);
+            padding: 2.5rem;
+            transition: background 0.3s var(--transition);
+        }
+
+        .service-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .service-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* More Projects Link Section */
+        .more-projects {
+            text-align: center;
+            padding: 6rem 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .more-projects h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .more-projects p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--text-dim);
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s var(--transition);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .btn svg {
+            transition: transform 0.3s var(--transition);
+        }
+
+        .btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 3rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-left .logo {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-left p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-right a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s var(--transition);
+        }
+
+        .footer-right a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero, section {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            
+            footer {
+                flex-direction: column;
+                text-align: center;
+                padding: 3rem 1.5rem;
+            }
+            
+            .scroll-line {
+                display: none;
+            }
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s var(--transition) forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Background Grid Effect */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(var(--text-dim) 1px, transparent 1px),
+                linear-gradient(90deg, var(--text-dim) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            Zwisky Studios
+            <span class="logo-dot"></span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#more">More Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-label fade-in">Brand Identity & Visual Design</div>
+            <h1 class="fade-in delay-1">
+                Crafting visual<br>
+                identities that <span>speak.</span>
+            </h1>
+            <p class="hero-desc fade-in delay-2">
+                Zwisky Studios is a design practice focused on brand identity, 
+                visual systems, and digital experiences. Based in Arusha, Tanzania — 
+                working with clients worldwide.
+            </p>
+            <div class="hero-stats fade-in delay-3">
+                <div class="stat">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">Clients</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">3+</span>
+                    <span class="stat-label">Years</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-line">
+            <span>Scroll</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="work">
+        <div class="section-header">
+            <div>
+                <div class="section-label">Selected Work</div>
+                <h2 class="section-title">Featured Projects</h2>
+            </div>
+            <p class="section-desc">
+                A curated selection of brand identities, visual systems, 
+                and creative direction projects.
+            </p>
+        </div>
+
+        <div class="projects-grid">
+            
+            <!-- Project 1: Rawling Logo -->
+            <div class="project-card">
+                <div style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=600&fit=crop" alt="Rawling Company" class="project-image">
+                    <div class="project-overlay">
+                        <span class="project-tag">Brand Identity</span>
+                        <div class="project-name">Rawling Company</div>
+                        <div class="project-type">Logo Design & Guidelines</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-info-text">
+                        <h3>Rawling Company Ltd</h3>
+                        <p>Corporate Identity, Logo System</p>
+                    </div>
+                    <div class="project-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Halal Kuku -->
+            <div class="project-card">
+                <div style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=600&fit=crop" alt="Halal Kuku" class="project-image">
+                    <div class="project-overlay">
+                        <span class="project-tag">Full Branding</span>
+                        <div class="project-name">Halal Kuku</div>
+                        <div class="project-type">Brand Identity & Business Cards</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-info-text">
+                        <h3>Halal Kuku</h3>
+                        <p>Food Brand, Packaging, Print</p>
+                    </div>
+                    <div class="project-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Harmonize Billboard -->
+            <div class="project-card">
+                <div style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop" alt="Harmonize" class="project-image">
+                    <div class="project-overlay">
+                        <span class="project-tag">Creative Direction</span>
+                        <div class="project-name">Billboard Charts</div>
+                        <div class="project-type">Artist Promotion Design</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-info-text">
+                        <h3>Harmonize — Billboard</h3>
+                        <p>Music Industry, Editorial Design</p>
+                    </div>
+                    <div class="project-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Eid al-Adha -->
+            <div class="project-card">
+                <div style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1564121211835-e88c852648ab?w=800&h=600&fit=crop" alt="Eid al-Adha" class="project-image">
+                    <div class="project-overlay">
+                        <span class="project-tag">Editorial</span>
+                        <div class="project-name">Eid al-Adha</div>
+                        <div class="project-type">Festival Poster Design</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-info-text">
+                        <h3>Eid al-Adha 2026</h3>
+                        <p>Cultural, Typography, Layout</p>
+                    </div>
+                    <div class="project-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: Normal -->
+            <div class="project-card">
+                <div style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop" alt="Normal" class="project-image">
+                    <div class="project-overlay">
+                        <span class="project-tag">Experimental</span>
+                        <div class="project-name">OPNAƎ</div>
+                        <div class="project-type">Conceptual Art Direction</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-info-text">
+                        <h3>Normal — Conceptual</h3>
+                        <p>Abstract, Visual Experiment</p>
+                    </div>
+                    <div class="project-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: She Broke Me -->
+            <div class="project-card">
+                <div style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=600&fit=crop" alt="She Broke Me" class="project-image">
+                    <div class="project-overlay">
+                        <span class="project-tag">Music Cover</span>
+                        <div class="project-name">She Broke Me</div>
+                        <div class="project-type">Album Artwork Design</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-info-text">
+                        <h3>She Broke Me</h3>
+                        <p>Music Art, Typography, Mood</p>
+                    </div>
+                    <div class="project-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 7: Tembo -->
+            <div class="project-card">
+                <div style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&h=600&fit=crop" alt="Tembo" class="project-image">
+                    <div class="project-overlay">
+                        <span class="project-tag">Artist Branding</span>
+                        <div class="project-name">Tembo x Harmonize</div>
+                        <div class="project-type">Promotional Design</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-info-text">
+                        <h3>Tembo — Music Promo</h3>
+                        <p>Artist Branding, Collage</p>
+                    </div>
+                    <div class="project-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 8: Graphics Designer -->
+            <div class="project-card">
+                <div style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop" alt="Graphics Designer" class="project-image">
+                    <div class="project-overlay">
+                        <span class="project-tag">Personal</span>
+                        <div class="project-name">Go With The Flow</div>
+                        <div class="project-type">Self-Promotion Piece</div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="project-info-text">
+                        <h3>Designer Statement</h3>
+                        <p>Personal Brand, Editorial</p>
+                    </div>
+                    <div class="project-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-header">
+            <div>
+                <div class="section-label">What We Do</div>
+                <h2 class="section-title">Services</h2>
+            </div>
+        </div>
+        <div class="services-grid">
+            <div class="service-item">
+                <div class="service-number">01</div>
+                <div class="service-title">Brand Identity</div>
+                <div class="service-desc">Logo design, visual systems, brand guidelines, and comprehensive identity packages that establish lasting brand recognition.</div>
+            </div>
+            <div class="service-item">
+                <div class="service-number">02</div>
+                <div class="service-title">Print Design</div>
+                <div class="service-desc">Business cards, packaging, posters, and editorial layouts with meticulous attention to typography and composition.</div>
+            </div>
+            <div class="service-item">
+                <div class="service-number">03</div>
+                <div class="service-title">Digital & Web</div>
+                <div class="service-desc">Social media assets, web design, and digital experiences that translate brand identity into interactive formats.</div>
+            </div>
+            <div class="service-item">
+                <div class="service-number">04</div>
+                <div class="service-title">Creative Direction</div>
+                <div class="service-desc">Art direction for photography, campaigns, and music projects — crafting cohesive visual narratives.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Projects Section -->
+    <section class="more-projects" id="more">
+        <h2>Explore More Work</h2>
+        <p>View the complete archive of brand identities, experiments, and client projects on our external portfolio.</p>
+        <a href="https://www.behance.net/zwiskystudios" target="_blank" class="btn">
+            View Full Portfolio
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+            </svg>
+        </a>
+        <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://www.instagram.com/zwiskystudios" target="_blank" class="btn" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">
+                Instagram
+            </a>
+            <a href="https://dribbble.com/zwisky" target="_blank" class="btn" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">
+                Dribbble
+            </a>
+            <a href="https://www.behance.net/zwiskystudios" target="_blank" class="btn" style="padding: 0.75rem 1.5rem; font-size: 0.75rem;">
+                Behance
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-left">
+            <a href="#" class="logo">
+                Zwisky Studios
+                <span class="logo-dot"></span>
+            </a>
+            <p>Arusha, Tanzania — Available Worldwide</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">francoisebernad81@gmail.com</p>
+        </div>
+        <div class="footer-right">
+            <a href="https://www.instagram.com/zwiskystudios" target="_blank">Instagram</a>
+            <a href="https://www.behance.net/zwiskystudios" target="_blank">Behance</a>
+            <a href="mailto:francoisebernad81@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `opacity 0.6s ${index * 0.1}s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s ${index * 0.1}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+
+</body>
+</html>
